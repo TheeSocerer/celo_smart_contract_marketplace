@@ -122,7 +122,27 @@ contract Marketplace {
 		);
 	}
 
-    
+    function buyProduct(uint _index) public payable  {
+
+		require(
+
+		  IERC20Token(cUsdTokenAddress).transferFrom(
+
+			msg.sender,
+
+			products[_index].owner,
+
+			products[_index].price
+
+		  ),
+
+		  "Transfer failed."
+
+		);
+
+		products[_index].sold++;
+
+	}
 
     function getProductsLength() public view returns (uint) {
 
